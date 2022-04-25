@@ -1,6 +1,6 @@
 script                    required functions + LVL4 EXECUTION
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-Prevail X (bare bones)    loadstring, game:HttpGet()
+Prevail X (bare bones)    -
 RapidFire, Uzi            require
 Inf Stamina               debug.getregistry, debug.setupvalue, debug.getupvalues
 Silent Command            debug.getmetatable, setthreadcontext, setreadonly, getnamecallmethod, newcclosure
