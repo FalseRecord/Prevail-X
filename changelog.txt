@@ -1,6 +1,8 @@
 + v2.29
 ~ Prevail is now open src, the skids will come like vultures.
-~ classic noclip replaced, touchclip Release
+~ Classic noclip replaced, touchclip Release
+~ Removed Veto
+~ Removed forced update system
 
 + v2.28 Final
 ~ Unpatched Taze All
