@@ -36,6 +36,7 @@
 - DED <Player>
 - Backward
 - Car <type>
+- touchclip/noclip II
 
 + Client
 - MapFuck v2
