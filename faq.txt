@@ -8,7 +8,4 @@ Q. What is FriendService, and why would i use it?
 A. Protects those friended to YOUR ROBLOX ACCOUNT from Prevail X's destructive functions. (Taze, KillAura, Kill, 1Punch, Arrest)
 
 Q. Will Prevail X work with free exploits?
-A. It should work with krnl, otherwise that exploit you must support loadstring and HttpGet.
-
-Q. Why does Prevail X lag after a certain amount of time using it, and is that bad?
-A. Because Prevail X is obfuscated and this is normal.
+A. All level 4 exploits will run Prevail's base features.
