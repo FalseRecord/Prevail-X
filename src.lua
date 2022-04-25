@@ -150,9 +150,6 @@ Prefix = "?"
 Zero = LP.Name
 SEArgs = LP.Name
 
-Pew = "AK-47"
-Silent = game.Workspace.Remote
-
 TT = {
 	Default = {
 		Primary = Color3.new(1,1,1),
@@ -335,7 +332,7 @@ g.MouseButton1Down:connect(function()
 	end
 end)
 
-g7.MouseButton1Down:connect(function()
+g7.MouseButton1Down:connect(function() -- 2nd Neutral
 	if tostring(BrickColor.new(g6.Text)) ~= "Medium stone grey" then
 		ReturnTM(g6.Text)
 		if v5.Text == "OFF" then
@@ -1057,7 +1054,7 @@ function TazFunc(Args)
 		local TM = tostring(game.Players[v.Name].Team) == "Inmates" or tostring(game.Players[v.Name].Team) == "Criminals"
 		if game.Workspace:FindFirstChild(v.Name) and TM and GetAccess(v.Name) and FriendService(v.Name) then
 			A_1[i] = {
-				["RayObject"] = Ray.new(Vector3.new(), Vector3.new()), 
+				["RayObject"] = Ray.new(Vector3.new(), Vector3.new()),
 				["Distance"] = 0.00,
 				["Cframe"] = CFrame.new(),
 				["Hit"] = game.Players[v.Name].Character.Head
@@ -1108,7 +1105,7 @@ end
 function Item(ItemReq)
 	if ItemReq == "M4A1" or ItemReq == "Riot Shield" then
 		if game:GetService("MarketplaceService"):UserOwnsGamePassAsync(LP.UserId, 96651) then 
-			game.Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver[ItemReq].ITEMPICKUP) 
+			game.Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver[ItemReq].ITEMPICKUP)
 		end
 	else
 		game.Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver[ItemReq].ITEMPICKUP) 
@@ -1223,7 +1220,7 @@ function AutoReload.Func()
 				if r["CurrentAmmo"] == 0 and AR[tool.Name] ~= true then
 					spawn(function()
 						AR[tool.Name] = true
-						print(tool.Name .." empty, reloading")
+						--print(tool.Name .." empty, reloading")
 						game.ReplicatedStorage.ReloadEvent:FireServer(tool)
 						wait(r["ReloadTime"])
 						local tool = tool
@@ -1234,7 +1231,7 @@ function AutoReload.Func()
 									r = require(tool.GunStates)
 								end
 								r["CurrentAmmo"] = r["MaxAmmo"]
-								warn("finished reloading " ..tool.Name)
+								--warn("finished reloading " ..tool.Name)
 							end
 						end
 						AR[tool.Name] = false
@@ -1773,7 +1770,7 @@ function Criminal(Arg1)
 	end
 end
 
-function ncII()
+function ncII() -- touchclip prototype
 	F1 = Instance.new("Part", LP.Character["Torso"])
 	F1.Size = Vector3.new(2.2,2,1.3)
 	F1.Transparency = 1
@@ -2350,7 +2347,7 @@ game.Workspace.Remote.tazePlayer.OnClientEvent:connect(function()
 	-- Save items
 end)
 
-game.Workspace.Remote.arrestPlayer.OnClientEvent:connect(function()
+game.Workspace.Remote.arrestPlayer.OnClientEvent:connect(function() -- Anti-Spam Arrest
 	if AntiAntiCheat == "1594427591" then
 		ArrN = ArrN+1
 	end
