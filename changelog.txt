@@ -1,3 +1,7 @@
++ v2.29
+~ Prevail is now open src, the skids will come like vultures.
+~ classic noclip replaced, touchclip Release
+
 + v2.28 Final
 ~ Unpatched Taze All
 ~ Fixed theming on Gun Mods frame
