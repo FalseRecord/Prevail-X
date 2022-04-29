@@ -770,8 +770,6 @@ MsgPX.Parent = hud
 MsgPX.Name = "MsgPX"
 
 Text = Instance.new("TextBox")
-FindSS = game.Players[Zero].Character:FindFirstChild("Head")
-FindWPN = LP.Backpack:FindFirstChild("M9") or LP.Character:FindFirstChild("M9")
 
 KEY = {
 	RapidFire = "e",
