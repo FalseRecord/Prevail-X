@@ -2,7 +2,7 @@
 
 Prevail = {
 	dev = "02hacks",
-	verison = "v2.29"
+	verison = "v2.30"
 }
 
 LP = game:GetService("Players").LocalPlayer
@@ -41,7 +41,7 @@ if typeof(getconnections) ~= "function" then
 	print("PX: AntiTaze, AntiArrest not supported")
 end
 
-if _G.PrevailX == nil then
+if not _G.PrevailX then
 	_G.PrevailX = {}
 end
 
@@ -54,16 +54,16 @@ if typeof(loadstring) == "function" then
 	get = loadstring(game:HttpGet("https://pastebin.com/raw/epCT49yq", true))()
 	Disc, DiscServ, titleBar, Pulldownmenu = get["g"], get["b"], get["c"], get["e"]
 end
-if Disc == nil then
+if not Disc then
 	Disc = "02hacks#2393"
 end
-if DiscServ == nil then
+if not DiscServ then
 	DiscServ = "discord.gg/EBTjwJy9kq"
 end
-if titleBar == nil then
+if not titleBar then
 	titleBar = "02hacks Prevail X"
 end
-if Pulldownmenu == nil then
+if not Pulldownmenu then
 	Pulldownmenu = "Prevail X, where small details do matter."
 end
 
@@ -143,6 +143,7 @@ Loop = false
 LockPosition = false
 GetBypass = false
 SilentC = false
+FFL = false
 
 DED_FS = false
 weapon = "M9"
@@ -224,7 +225,7 @@ Enter.MouseButton1Down:connect(function()
 end)
 
 -- Main
-repeat wait() until Boot == true
+repeat wait() until Boot
 
 Tab1Button = Create("TextButton", {Parent=TabFrame,Visible=true,BackgroundColor3=Background,BackgroundTransparency=0,Size=UDim2.new(0,60,0,20),Position=UDim2.new(0,0,0.0,0),BorderColor3=Background,Text="Main",TextColor3=Primary,Name="Main",Font=Enum.Font.SourceSansSemibold,FontSize=6})
 Tab1Frame = Create("Frame", {Parent=UI,Visible=false,BackgroundColor3=Background,BackgroundTransparency=0,Size=UDim2.new(0,590,0,265),Position=UDim2.new(0.01,0,0.1575,0),BorderColor3=Background,Name="Main"})
@@ -268,7 +269,7 @@ XXD = Create("TextButton", {Parent=XXR,Visible=true,BackgroundColor3=Background,
 XXD.MouseButton1Down:connect(function()
 	if DiscServ ~= nil then
 		local setclip,msg = setclipboard or writeclipboard,"Invite copied to clipboard"
-		if setclip == nil then
+		if not setclip then
 			setclip,msg = print,"Press F9"
 		end
 		setclip(DiscServ)
@@ -443,7 +444,7 @@ function RapidFire(Args,Eq)
 end
 
 function AutoTog(Args)
-	if Args == nil then
+	if not Args then
 		Args = Ms5.Text
 	end
 	if Args == "false" then
@@ -516,7 +517,7 @@ do
 		if Args.Text == "" or Args.Text == "-" then
 			return
 		end
-		if tonumber(Args.Text) == nil then
+		if not tonumber(Args.Text) then
 			Args.Text = 0
 		end
 		if tonumber(Args.Text) > 25 then
@@ -624,7 +625,7 @@ function AdvFilter(Args)
 	if Args.Text == "" then
 		return
 	end
-	if tonumber(Args.Text) == nil then
+	if not tonumber(Args.Text) then
 		Args.Text = "0"
 	else
 		if tonumber(Args.Text) > 255 then
@@ -757,7 +758,7 @@ PF4 = Create("TextLabel",{Text="Current Prefix: "..Prefix,Name="Prefix",Parent=x
 x8 = Create("TextLabel",{Text="Chat Commands",Name="Title",Parent=x2,TextColor3=Primary,BackgroundColor3=Background,BorderColor3=Background,Position=UDim2.new(0.3125,0,-0.0625,0),Size=UDim2.new(0,120,0,20,0),Font=Enum.Font.SourceSansSemibold,FontSize=6})
 
 wait(0.1) -- Setups
-if LP.TeamColor.Name == "Medium stone grey" and LP.PlayerGui.Home.intro.Visible == true then
+if LP.TeamColor.Name == "Medium stone grey" and LP.PlayerGui.Home.intro.Visible then
 	game.Workspace.Remote.loadchar:InvokeServer(LP, "Bright orange")
 end
 
@@ -861,7 +862,7 @@ function GetAccess(Args) -- Updated 11.13.20
 			Vec = Vector2.new(Vec.X,0)
 		end
 		local v2 = Vec.X ~= 1 or Vec.Y ~= 1
-		if v2 and GetBypass == false then
+		if v2 and not GetBypass then
 			Access = false
 		end
 	end
@@ -870,7 +871,7 @@ end
 
 function FriendService(Args) -- FriendService v2
 	local Enemy = true
-	if FS_t[Args] and DED_FS or game.Players:FindFirstChild(Args) == nil then
+	if FS_t[Args] and DED_FS or not game.Players:FindFirstChild(Args) then
 		Enemy = false
 	end
 	return Enemy
@@ -896,8 +897,8 @@ end
 
 function RFEquiped(Args)
 	if game.Workspace:FindFirstChild(LP.Name) and game.Workspace[LP.Name]:FindFirstChildOfClass("Tool") then
-		FindEquip = LP.Character:FindFirstChildOfClass("Tool").Name
-		if Args == nil then
+		local FindEquip = LP.Character:FindFirstChildOfClass("Tool").Name
+		if not Args then
 			LP.Character.Humanoid:UnequipTools(game.Workspace[LP.Name][FindEquip])
 			if LP.Backpack[FindEquip]:FindFirstChild("RapidFirePX") then
 				LP.Backpack[FindEquip].RapidFirePX:Remove()
@@ -914,7 +915,7 @@ end
 function GetRoast(Args)
 	local Get = GetPlayer(Args)
 	Roastn = Roastn+1
-	if game.Players:FindFirstChild(Get) == nil then
+	if not game.Players:FindFirstChild(Get) then
 		return
 	end
 	local Roasts = {
@@ -942,7 +943,7 @@ function GetRoast(Args)
 end
 
 function SetBind(Args)
-	if LOG == true then
+	if LOG then
 		KEY[SetKey] = Args
 		TXT[SetKey].Text = Args:upper()
 	end
@@ -967,8 +968,8 @@ function StaminaMsg(Args,t)
 end
 
 function GetPlayer(Args)
-	StringMatch = nil
-	if Args == nil or Args == "" then
+	local StringMatch = nil
+	if not Args or Args == "" then
 		Args = b0.Text
 	end
 	for i,v in pairs(game.Players:GetChildren()) do
@@ -977,7 +978,7 @@ function GetPlayer(Args)
 			return StringMatch
 		end
 	end
-	if StringMatch == nil then
+	if not StringMatch then
 		return ""
 	end
 end
@@ -1074,7 +1075,7 @@ end
 
 function GetCar(Args,Posi) -- Args: Sedan, Squad
 	if game.Workspace:FindFirstChild(LP.Name) then
-		if typeof(Posi) ~= "Vector3" or Posi == nil then
+		if typeof(Posi) ~= "Vector3" or not Posi then
 			Posi = LP.Character.HumanoidRootPart.Position + Vector3.new(0,-5,0)
 		end
 		for i,v in next, game.Workspace.CarContainer:GetChildren() do 
@@ -1129,29 +1130,29 @@ function KillAura.Panel(Args)
 	end
 	if game.Players:FindFirstChild(Args) then
 		local st = KillAura.Solo
-		if st[Args] == true then
+		if st[Args] then
 			st[Args] = false
 		else
 			st[Args] = true
 		end
 		--warn(Args, st[Args])
-		if st[Args] == false then
+		if not st[Args] then
 			removev2(pt,Args)
 		else
 			table.insert(pt,Args)
 		end
 		return
 	end
-	if t == nil or Args == "" then
+	if not t or Args == "" then
 		return
 	end
-	if tt[Args] == true then
+	if tt[Args] then
 		tt[Args] = false
 	else
 		tt[Args] = true
 	end
 	for i,v in next, t do
-		if tt[Args] == false then
+		if not tt[Args] then
 			if KillAura.Solo[v] ~= true then
 				removev2(pt,v.Name)
 			end
@@ -1188,7 +1189,7 @@ function KillAura.Func(Args)
 				end
 			end
 		end
-	until Active == false
+	until nil
 end
 
 function KillAura.Teleport()
@@ -1242,7 +1243,7 @@ function AutoReload.Func()
 end
 
 function GetCFrame()
-	if game.Workspace:FindFirstChild(LP.Name) and LockPosition == false then
+	if game.Workspace:FindFirstChild(LP.Name) and not LockPosition then
 		if LP.Character:FindFirstChild("HumanoidRootPart") then
 			RE = LP.Character.HumanoidRootPart.CFrame
 		end
@@ -1290,19 +1291,19 @@ function ReturnTM(Args) -- ReturnTM v3.20 Created: 3.21.21
 		CRIMv2.Spawn["CanCollide"] = false
 		return
 	end
-	if Args == nil or Args == "" then 
+	if not Args or Args == "" then
 		Args = OldTM
 	end
 	if game.Workspace:FindFirstChild(LP.Name) and LP.Character:FindFirstChild("Humanoid") then
-		NinthKnight = #game.Teams["Guards"]:GetPlayers() < 8 and Args == "Bright blue" -- 9th Knight Bypass
+		local NinthKnight = #game.Teams["Guards"]:GetPlayers() < 8 and Args == "Bright blue" -- 9th Knight Bypass
 		if Args == "Bright orange" or Args == "Medium stone grey" or NinthKnight then
 			Workspace.Remote.TeamEvent:FireServer(Args)
 		else
-			if LP.Character.Humanoid.Sit == true then
+			if LP.Character.Humanoid.Sit then
 				LP.Character.Humanoid.Sit = false
 			end
 			if LP.Character:FindFirstChild("HumanoidRootPart") then
-				NotGuard = tostring(LP.Team) ~= "Guards" or LP.Team == nil
+				NotGuard = tostring(LP.Team) ~= "Guards" or not LP.Team
 				if Args == "Really red" and NotGuard then -- Criminal v2.00
 					CRIMv2.Spawn.CFrame = LP.Character.HumanoidRootPart.CFrame
 					wait()
@@ -1336,7 +1337,7 @@ end
 
 function ReturnInv() -- ReturnInv v2.00 Created: 4.23.20
 	for i,v in next, Inv do
-		if string.split(v,"_") == nil then
+		if not string.split(v,"_") then
 			return
 		end
 		ItemReq = string.split(v,"_")[1]
@@ -1360,10 +1361,10 @@ function Respawnv2(Args)
 		end)
 		return
 	end
-	if Loop == false and game.Workspace:FindFirstChild(LP.Name) then
+	if not Loop and game.Workspace:FindFirstChild(LP.Name) then
 		Rev2 = true
 		ScanTM()
-		if tostring(LP.Team) == "Neutral" or LP.Team == nil then 
+		if tostring(LP.Team) == "Neutral" or not LP.Team then
 			ReturnTM("Bright orange") 
 		end
 		ScanInv()
@@ -1372,14 +1373,14 @@ function Respawnv2(Args)
 		CameraCF = game.Workspace.Camera.CFrame
 		game:GetService('StarterGui'):setCoreGuiEnabled("Backpack", true)
 
-		if RE == nil then 
+		if not RE then
 			RE = LP.Character.HumanoidRootPart.CFrame
 		end
 
-		game.Workspace.Remote.loadchar:InvokeServer()
-		
+		game.Workspace.Remote.loadchar:InvokeServer(LP,Args)
+
 		local int = LP.PlayerGui.Home.intro
-		if int.Visible == true then
+		if int.Visible then
 			int.Visible = false
 		end
 		
@@ -1396,7 +1397,7 @@ function Respawnv2(Args)
 		ReturnStats()
 		ReturnInv()
 		
-		if LP.Character:WaitForChild("ClientInputHandler") and InfStaminaLock == false then
+		if LP.Character:WaitForChild("ClientInputHandler") and not InfStaminaLock then
 			InfStamina()
 		end
 		if Anti["taze"].Active then
@@ -1421,7 +1422,7 @@ function FastPunch()
 			CIH = getsenv(LP.Character.ClientInputHandler)
 			CIH.cs.isFighting = false
 		end
-	until FastPunchLock == true
+	until FastPunchLock
 end
 
 function Invisible()
@@ -1429,7 +1430,7 @@ function Invisible()
 		local weld02 = LP.Character.HumanoidRootPart.Position 
 		Teleport(CFrames["Invisible"])
 		wait(0.25)
-		CloneHRP = LP.Character.HumanoidRootPart:Clone() 
+		CloneHRP = LP.Character.HumanoidRootPart:Clone()
 		LP.Character.HumanoidRootPart:Destroy() 
 		CloneHRP.Parent = LP.Character
 		LP.Character.HumanoidRootPart.CFrame = CFrame.new(weld02)
@@ -1441,7 +1442,7 @@ function s0nicsc0pe(Args)
 	sZero = GetPlayer(Args)
 	if game.Players:FindFirstChild(sZero) and game.Workspace:FindFirstChild(sZero) then
 		ScanTM()
-		if tostring(game.Players[sZero].Team) == "Neutral" or game.Players[sZero].Team == nil then 
+		if tostring(game.Players[sZero].Team) == "Neutral" or not game.Players[sZero].Team then
 			ReturnTM("Bright orange")
 		else 
 			ReturnTM("Medium stone grey") 
@@ -1457,7 +1458,7 @@ function DEDF()
 	for i,v in next, game.Players:GetChildren() do
 		if v.Name ~= LP.Name then
 			if tostring(LP.Team) == tostring(v.Team) then
-				if tostring(v.Team) == "Neutral" or v.Team == nil then
+				if tostring(v.Team) == "Neutral" or not v.Team then
 					ReturnTM("Bright orange")
 				else 
 					ReturnTM("Medium stone grey") 
@@ -1471,7 +1472,7 @@ function DEDF()
 end
 
 function Punch1.Func() -- 1Punch v2.20 Created 11.30.20
-	if Punch1.Lock == false and Punch1.Active and game.Workspace:FindFirstChild(LP.Name) then
+	if not Punch1.Lock and Punch1.Active and game.Workspace:FindFirstChild(LP.Name) then
 		Punch1.Lock = true
 		for i,Arm in next, {"Left Arm", "Right Arm"} do
 			local Part = Instance.new("Part", LP.Character[Arm])
@@ -1496,7 +1497,7 @@ function Punch1.Func() -- 1Punch v2.20 Created 11.30.20
 						for i = 1,10 do
 							game.ReplicatedStorage.meleeEvent:FireServer(game.Players[MeleeMe])
 						end
-						if AboosiveGuard == true then 
+						if AboosiveGuard then
 							wait(0.72)
 							ReturnTM("Bright blue")
 						end
@@ -1531,7 +1532,7 @@ function InfStamina() -- Updated 7.11.20
 					b = 0
 				end
 				if i2 == 5 and typeof(v2) == "number" and tostring(v2) == string.split(v2,".")[1] then
-					if InfStaminaLock == false then
+					if not InfStaminaLock then
 						setupvalue(v,i2,math.huge)
 					else
 						setupvalue(v,i2,12)
@@ -1546,7 +1547,7 @@ function FindVeh() -- FindVeh Created 4.23.20
 	if game.Workspace:FindFirstChild(LP.Name) and LP.Character:FindFirstChild("Humanoid") then 
 		LP.Character.Humanoid:GetPropertyChangedSignal("SeatPart"):connect(function()
 			Seat = LP.Character.Humanoid.SeatPart
-			if tostring(Seat) == "VehicleSeat" and SpedCart == true then 
+			if tostring(Seat) == "VehicleSeat" and SpedCart then
 				SpedCar(Seat.Parent.Parent)
 			end
 		end)
@@ -1594,7 +1595,7 @@ function SpedCar(Args) -- SpedCar Created 4.23.20
 			Vehicle.RW.VS.Torque = 20
 			Vehicle.RW.VS.MaxSpeed = 800
 		end
-	until game.Workspace:FindFirstChild(LP.Name) == nil or LP.Character.Humanoid.SeatPart == nil or Vehicle == nil or SpedCart == false
+	until not game.Workspace:FindFirstChild(LP.Name) or not LP.Character.Humanoid.SeatPart or not Vehicle or not SpedCart
 end
 
 function ToggleFunc(Args,Args2)
@@ -1605,10 +1606,8 @@ function ToggleFunc(Args,Args2)
 		Args.TextColor3 = Color3.new(1,0,0) 
 		Args.Text = "OFF" 
 	end
-	if Args2 == nil then
-		Do = "Nothing"
-	else
-		if Args2 == true then
+	if Args2 ~= nil then
+		if Args2 then
 			Args2 = false
 		else
 			Args2 = true
@@ -1618,7 +1617,7 @@ function ToggleFunc(Args,Args2)
 end
 
 function Animation(Args)
-	if Args == nil then
+	if not Args then
 		return
 	end
 	local obj = Instance.new("Animation")
@@ -1743,7 +1742,7 @@ end
 function Criminal(Arg1)
 	if game.Workspace:FindFirstChild(Arg1) and game.Workspace:FindFirstChild(LP.Name) then
 		weld02 = LP.Character.HumanoidRootPart.CFrame
-		if game.Workspace[Arg1].Humanoid.Sit == true then
+		if game.Workspace[Arg1].Humanoid.Sit then
 			return
 		end
 		game.Workspace.Remote.loadchar:InvokeServer(LP, "Really red")
@@ -1800,6 +1799,19 @@ function ncf(Args)
 	end
 end
 
+function FEFF()
+	if not FFL then
+		return
+	end
+	repeat
+		if game.Workspace:WaitForChild(LP.Name) and game.Workspace[LP.Name]:WaitForChild("HumanoidRootPart") then
+			Respawnv2("Really red")
+			game.Workspace[LP.Name].ForceField.Visible = false
+		end
+		wait(9.25)
+	until not FFL
+end
+
 function Setup()
 	ReturnTM("Setup")
 	Respawnv2("Setup")
@@ -1829,7 +1841,7 @@ function Setup()
 	end
 	if game.Workspace:FindFirstChild(LP.Name) then
 		LP.Character:WaitForChild("Humanoid").Died:Connect(function()
-			if AutoRespawn == true and Arrested == false then
+			if AutoRespawn and not Arrested then
 				GetCFrame()
 				LockPosition = true
 				Respawnv2()
@@ -1870,7 +1882,7 @@ b4.MouseButton1Down:connect(function() -- Teleport
 end)
 
 e7.MouseButton1Down:connect(function() -- MapFuck v2
-	if FuckRan == true then
+	if FuckRan then
 		for i = 1,2 do
 			MapF.PATCH_GRASS.Parent = game.Workspace
 		end
@@ -2042,11 +2054,11 @@ b6.MouseButton1Down:connect(function() -- arrestsc0pe v1.00
 end)
 
 b3.MouseButton1Down:connect(function() -- tazesc0pe v1.00 
-	tazesc0pe = GetPlayer()
+	local tazesc0pe = GetPlayer()
 	if game.Workspace:FindFirstChild(tazesc0pe) and game.Workspace:FindFirstChild(LP.Name) then
 		if tostring(game.Players[tazesc0pe].Team) == "Inmates" or tostring(game.Players[tazesc0pe].Team) == "Criminals" then
 			game.Workspace[LP.Name].Humanoid:UnequipTools()
-			if tostring(LP.Team) ~= "Guards" or LP.Backpack:FindFirstChild("Taser") == nil then 
+			if tostring(LP.Team) ~= "Guards" or not LP.Backpack:FindFirstChild("Taser") then
 				weld02 = LP.Character.HumanoidRootPart.CFrame
 				game.Workspace.Remote.loadchar:InvokeServer(LP, "Bright blue")
 				LP.Character.HumanoidRootPart.CFrame = weld02
@@ -2062,7 +2074,7 @@ e2.MouseButton1Down:connect(function() -- Arrest All
 	weld02 = LP.Character.HumanoidRootPart.CFrame
 	for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
 		if v.Name ~= LP.Name then ArrestAura = v.Name
-			if FriendService(ArrestAura) == true and GetAccess(ArrestAura) then
+			if FriendService(ArrestAura) and GetAccess(ArrestAura) then
 				att = 0
 				repeat wait()
 					if game.Players:FindFirstChild(ArrestAura) then 
@@ -2089,7 +2101,7 @@ end)
 
 f2.MouseButton1Down:connect(function() -- Taze All
 	game.Workspace[LP.Name].Humanoid:UnequipTools()
-	if tostring(LP.Team) ~= "Guards" or LP.Backpack:FindFirstChild("Taser") == nil then 
+	if tostring(LP.Team) ~= "Guards" or not LP.Backpack:FindFirstChild("Taser") then 
 		weld02 = LP.Character.HumanoidRootPart.CFrame
 		game.Workspace.Remote.loadchar:InvokeServer(LP, "Bright blue")
 		LP.Character.HumanoidRootPart.CFrame = weld02
@@ -2155,7 +2167,7 @@ end)
 
 f3.MouseButton1Down:connect(function()
 	for i,v in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do 
-		ItemReq = v.Name 
+		ItemReq = v.Name
 		if ItemReq == "M4A1" or ItemReq == "Riot Shield" then 
 			if game:GetService("MarketplaceService"):UserOwnsGamePassAsync(LP.UserId, 96651) then 
 				game.Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver[ItemReq].ITEMPICKUP) 
@@ -2207,7 +2219,7 @@ g3.MouseButton1Down:connect(function()
 end)
 
 f5.MouseButton1Down:connect(function() -- Suicide
-	if Loop == true or tostring(LP.Team) == "Neutral" then 
+	if Loop or tostring(LP.Team) == "Neutral" then 
 		ReturnTM("Bright orange")
 	end
 	if game.Workspace:FindFirstChild(LP.Name) then
@@ -2292,14 +2304,14 @@ end)
 
 v8.MouseButton1Down:connect(function() -- FastPunch 
 	FastPunchLock = ToggleFunc(v8, FastPunchLock)
-	if FastPunchLock == false then
+	if not FastPunchLock then
 		FastPunch()
 	end
 end)
 
 v7.MouseButton1Down:connect(function() -- Sped Car 
 	SpedCart = ToggleFunc(v7, SpedCart)
-	if tostring(LP.Character.Humanoid.SeatPart) == "VehicleSeat" and SpedCart == true then 
+	if tostring(LP.Character.Humanoid.SeatPart) == "VehicleSeat" and SpedCart then 
 		SpedCar(Seat.Parent.Parent)
 	end
 end)
@@ -2355,15 +2367,15 @@ game.Workspace.Remote.arrestPlayer.OnClientEvent:connect(function() -- Anti-Spam
 		ReturnTM("Medium stone grey")
 		wait(0.25)
 	end
-	if AutoRespawn == true then
+	if AutoRespawn then
 		ScanTM()
 		GetCFrame()
 		repeat wait() 
-			if Arrested == true and LPAdded == true then 
+			if Arrested and LPAdded then 
 				ArrestLoop = false 
 			end
-		until ArrestLoop == false
-		if AutoRespawn == true then
+		until not ArrestLoop
+		if AutoRespawn then
 			Respawnv2()
 		end
 	end
@@ -2377,7 +2389,7 @@ LP.CharacterAdded:connect(function()
 	hud.Visible = true
 
 	LP.Character:WaitForChild("Humanoid").Died:Connect(function()
-		if AutoRespawn == true and Arrested == false then
+		if AutoRespawn and not Arrested then
 			GetCFrame()
 			LockPosition = true
 			Respawnv2()
@@ -2387,7 +2399,7 @@ LP.CharacterAdded:connect(function()
 	end)
 	if Rev2 == false then 
 		wait(0.1)
-		if LP.Character:WaitForChild("ClientInputHandler") and InfStaminaLock == false then
+		if LP.Character:WaitForChild("ClientInputHandler") and not InfStaminaLock then
 			InfStamina()
 		end
 		if Anti["taze"].Active then
@@ -2405,7 +2417,7 @@ end)
 
 LP:GetMouse().KeyDown:connect(function(key)
 	local key = key:lower()
-	if LOG == true then
+	if LOG then
 		for b = 97,122 do
 			if key == string.char(b) then
 				SetBind(key)
@@ -2419,7 +2431,7 @@ LP:GetMouse().KeyDown:connect(function(key)
 		elseif key == "d" then GetCFrame()
 		elseif key == KEY.RapidFire then RFEquiped()
 		elseif key == "f" then Punch1.Func()
-		elseif key == "g" then
+		elseif key == "g" then FFL = ToggleFunc(Text,FFL) FEFF()
 		elseif key == KEY.UI then UIVisible = ToggleFunc(Text,UIVisible) UI.Visible = UIVisible
 		elseif key == KEY.Invisible then Invisible()
 		elseif key == "j" then
@@ -2429,7 +2441,7 @@ LP:GetMouse().KeyDown:connect(function(key)
 		elseif key == "n" then
 		elseif key == "o" then
 		elseif key == "p" then
-		elseif key == KEY.Respawnv2 then if AutoRespawn == false then Respawnv2() end
+		elseif key == KEY.Respawnv2 then if not AutoRespawn then Respawnv2() end
 		elseif key == "r" then
 		elseif key == "s" then GetCFrame()
 		elseif key == "t" then
@@ -2444,7 +2456,7 @@ LP:GetMouse().KeyDown:connect(function(key)
 end)
 
 LP:GetMouse().KeyUp:connect(function(key)
-	if LOG == false then
+	if not LOG then
 		local key = key:lower()
 		if key == "a" or key == "s" or key == "d" or key == "w" then
 			GetCFrame()
