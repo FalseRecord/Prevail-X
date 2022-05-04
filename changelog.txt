@@ -1,3 +1,7 @@
++ v2.30
+~ FEFF Release, toggle is key G
+~ Cleaned up various pieces of code
+
 + v2.29
 ~ Prevail is now open src, the skids will come like vultures.
 ~ Classic noclip replaced, touchclip Release
